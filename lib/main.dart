@@ -1,3 +1,4 @@
+import 'package:advanced/pages/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show Platform;
@@ -63,24 +64,25 @@ class _MyHomePageState extends State<MyHomePage> {
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-             Text(
-                  "version= ${_version.toString()} \n"
-                  "packageName= ${_packageName.toString()}",
-               style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              '$_projectVersion',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
+      body:HomePage(),
+      // Center(
+      //   // Center is a layout widget. It takes a single child and positions it
+      //   // in the middle of the parent.
+      //   child: Column(
+      //         mainAxisAlignment: MainAxisAlignment.center,
+      //     children: <Widget>[
+      //        Text(
+      //             "version= ${_version.toString()} \n"
+      //             "packageName= ${_packageName.toString()}",
+      //          style: TextStyle(fontSize: 18),
+      //       ),
+      //       Text(
+      //         '$_projectVersion',
+      //         style: Theme.of(context).textTheme.headline4,
+      //       ),
+      //     ],
+      //   ),
+      // ),
       floatingActionButton: FloatingActionButton(
         onPressed: _incrementCounter,
         tooltip: 'Increment',
