@@ -1,6 +1,7 @@
 import 'package:advanced/pages/awesome_dialog.dart';
 import 'package:advanced/pages/localization.dart';
 import 'package:advanced/pages/login_page.dart';
+import 'package:advanced/pages/sign_up.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show Platform;
@@ -27,21 +28,6 @@ void main() async {
     ],
     path: 'assets/translations',
     fallbackLocale: Locale('uz', 'UZ'),
-    // startLocale: Locale('de', 'DE'),
-    // saveLocale: false,
-    // useOnlyLangCode: true,
-
-    // optional assetLoader default used is RootBundleAssetLoader which uses flutter's assetloader
-    // install easy_localization_loader for enable custom loaders
-    // assetLoader: RootBundleAssetLoader()
-    // assetLoader: HttpAssetLoader()
-    // assetLoader: FileAssetLoader()
-    // assetLoader: CsvAssetLoader()
-    // assetLoader: YamlAssetLoader() //multiple files
-    // assetLoader: YamlSingleAssetLoader() //single file
-    // assetLoader: XmlAssetLoader() //multiple files
-    // assetLoader: XmlSingleAssetLoader() //single file
-    // assetLoader: CodegenLoader()
   ));
 }
 
@@ -58,7 +44,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const LoginPage(),
+      home:  SignUpPage(),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -102,8 +88,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
       ),
       body: HomePage(),
