@@ -1,13 +1,20 @@
 import 'package:advanced/pages/awesome_dialog.dart';
 import 'package:advanced/pages/localization.dart';
+import 'package:advanced/pages/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:io' show Platform;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'dart:io';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('pdp_online');
   await EasyLocalization.ensureInitialized();
 
   runApp(EasyLocalization(
@@ -51,7 +58,7 @@ class MyApp extends StatelessWidget {
 
         primarySwatch: Colors.blue,
       ),
-      home: const LocalLanguage(),
+      home: const LoginPage(),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
@@ -75,7 +82,6 @@ class _MyHomePageState extends State<MyHomePage> {
   String _buildNumber = '';
   String _packageName = '';
   String _version = '';
-
   int _counter = 0;
 
   @override
