@@ -1,6 +1,7 @@
 import 'package:advanced/model/user_reg.dart';
 import 'package:advanced/pages/awesome_dialog.dart';
 import 'package:advanced/pages/login_hive.dart';
+import 'package:advanced/pages/login_oval.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: LoginHive(),
+      home: LoginOval(),
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
