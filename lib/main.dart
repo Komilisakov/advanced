@@ -1,22 +1,49 @@
+import 'package:advanced/model/user_reg.dart';
 import 'package:advanced/pages/awesome_dialog.dart';
-import 'package:advanced/pages/localization.dart';
-import 'package:advanced/pages/login_page.dart';
-import 'package:advanced/pages/sign_up.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'dart:io' show Platform;
-import 'package:package_info_plus/package_info_plus.dart';
+import 'package:advanced/pages/login_hive.dart';
 import 'package:easy_localization/easy_localization.dart';
-import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: LoginHive(),
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
+      locale: context.locale,
+      // home: const MyHomePage(title: 'Get version and Package'),
+    );
+  }
+}
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Hive.initFlutter();
+  Hive.registerAdapter(UserRegAdapter());
   await Hive.openBox('pdp_online');
+  // Hive.registerAdapter<UserReg>(UserRegAdapter());
   await EasyLocalization.ensureInitialized();
+
+  // Hive.registerAdapter(UserRegAdapter());
+  try {} on Exception catch (exception) {
+    print(exception.toString());
+  } catch (error) {
+    print("error.toString()");
+    print(error.toString());
+  }
 
   runApp(EasyLocalization(
     child: MyApp(),
@@ -29,28 +56,6 @@ void main() async {
     path: 'assets/translations',
     fallbackLocale: Locale('uz', 'UZ'),
   ));
-}
-
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-
-        primarySwatch: Colors.blue,
-      ),
-      home:  SignUpPage(),
-      localizationsDelegates: context.localizationDelegates,
-      supportedLocales: context.supportedLocales,
-      locale: context.locale,
-      // home: const MyHomePage(title: 'Get version and Package'),
-    );
-  }
 }
 
 class MyHomePage extends StatefulWidget {

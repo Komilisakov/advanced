@@ -1,6 +1,7 @@
 import 'package:advanced/model/user_model.dart';
+import 'package:advanced/model/user_reg.dart';
 import 'package:hive/hive.dart';
-
+import 'package:flutter/material.dart';
 class HiveDB {
   var box = Hive.box('pdp_online');
 
@@ -16,7 +17,7 @@ class HiveDB {
     if (useString != null){
       print("useString");
       print(useString);
-       user =new User.fromJson(useString);
+       user = new User.fromJson(useString);
     }
     print(user);
 
@@ -26,4 +27,22 @@ class HiveDB {
   void removeUser() async {
     box.delete("user");
   }
+  void UserRegister(UserReg userReg){
+    box.put("user_reg",userReg);
+  }
+
+  UserReg readUserReg(){
+    UserReg userReg = UserReg()..username = ""..password = ""..phone = ""..email = "";
+print("box.get('user_reg')");
+    print(box.get("user_reg"));
+    if(box.get("user_reg") != null){
+      userReg = box.get("user_reg");
+      print("userReg.username");
+      print(userReg.username);
+    }
+    return userReg;
+    box.get("user_reg");
+  }
+
+
 }
